@@ -1,0 +1,43 @@
+/*
+Name:					Sean Glover
+Class:					CIS 114 - JavaScript/jQuery
+Assignment:	Lesson 06:  jQuery annimation - style sheet
+Due: 				    5/23/13
+*/
+
+#thumbs {
+    display: block;
+    width: 80px;
+}
+
+.thumbnails {
+    width: 150px;
+}
+
+img {
+    border: none;
+}
+
+#fullImage {
+    position: fixed;
+    top: 50px;
+    left: 250px;
+}
+
+figure {
+    border: 1px solid lightgray;
+    width: 400px;
+    height: 300px;
+}
+
+figcaption {
+    border: 1px solid black;
+    background-color: lightgray;
+    text-align: center;
+    position: fixed;
+    top: 370px;
+    width: 399px;
+    height: 20px;
+}
+
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Name:					Sean Glover
+		Class:					CIS 114 - JavaScript/jQuery
+		Assignment:	Lesson 06:  jQuery annimation
+		Due: 				    5/23/13
+    -->
+    <title>jQuery Annimation</title>
+    <meta charset="UTF-8">
+
+
+    <link rel="stylesheet" href="styles/index.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('a').on("click", function() {
+                var alt = $(this).find('img').attr('alt');
+                var src = $(this).find('img').attr('src');
+
+                $('figcaption').find('span').fadeOut(400, function() {
+                    $('figcaption').find('span').text(alt).fadeIn(5000);
+                })
+
+                var currImgLocation = $(this).find('img').offset();
+                var placeholder = $('figure').offset();
+
+                var mrgTop =  placeholder.top - currImgLocation.top;
+                var mrgLeft = placeholder.left - currImgLocation.left;
+
+                var newImg = $(this).find('img').clone().appendTo('figure').offset({top: currImgLocation.top, left: currImgLocation.left});
+
+                $(newImg).css({'display':'block', 'opacity':'0.1'}).animate({
+                    opacity: '1',
+                    width: '400',
+                    height: '300',
+                    marginLeft: mrgLeft,
+                    marginTop: mrgTop
+                }, 5400, function() {
+                    $(this).fadeOut('fast').remove();
+
+                    $('figure').append('<img src="' + src + '" alt="' + alt + '" />').offset({top: placeholder.top, left: placeholder.left});
+                    var cnt = $('figure > img');
+
+                    if (cnt.length > 1) {
+                        cnt.first().remove();
+                    }
+                });
+
+                return false;
+            });
+        });
+    </script>
+
+</head>
+<body>
+<h3>jQuery annimation by Sean</h3>
+
+<div id="thumbs">
+    <a href="images/img1.jpg"><img src="images/img1.jpg" alt="city street" class="thumbnails" /></a>
+    <a href="images/img2.jpg"><img src="images/img2.jpg" alt="dude looking up" class="thumbnails" /></a>
+    <a href="images/img3.jpg"><img src="images/img3.jpg" alt="iPhone" class="thumbnails" /></a>
+</div>
+
+<div id="fullImage">
+    <figure>
+        <figcaption><span></span></figcaption>
+    </figure>
+</div>
+
+</body>
+</html>
